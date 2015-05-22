@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent" android:layout_height="match_parent"
+    android:background="#ffffffff"
+    android:paddingLeft="5dp"
+    android:paddingRight="5dp">
+
+    <TextView
+        android:id="@+id/cmpname1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+    <TextView
+        android:id="@+id/tickername1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/cmpname1"
+        android:layout_alignParentLeft="true"
+        />
+
+    <TextView
+        android:id="@+id/exchname1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/tickername1"
+        android:layout_alignParentLeft="true"
+
+        />
+    <TextView
+        android:id="@+id/typename1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_above="@id/exchname1"
+        android:textSize="20sp"
+        android:layout_marginLeft="5dp"
+
+        />
+
+    <TextView
+        android:id="@+id/curr"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toLeftOf="@id/typename1"
+        android:layout_alignBottom="@id/typename1"
+        android:layout_marginLeft="10dp"
+        />
+    <TextView
+        android:id="@+id/chg"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/tickername1"
+        android:layout_toRightOf="@id/exchname1"
+        android:layout_marginLeft="30dp"
+        />
+</RelativeLayout>

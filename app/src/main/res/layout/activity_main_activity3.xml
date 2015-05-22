@@ -1,0 +1,74 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="5dp"
+    tools:context="app.stock.ikshwaku.stalkmarket.MainActivity3"
+    android:background="#ff839DB6">
+
+    <RelativeLayout
+        android:id="@+id/header"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:background="#ff5200A3">
+        <TextView
+            android:id="@+id/cmpname2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+        <TextView
+            android:id="@+id/tickername2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/cmpname2"
+            android:layout_alignParentLeft="true"
+            />
+
+        <TextView
+            android:id="@+id/exchname2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/tickername2"
+            android:layout_alignParentLeft="true"
+
+            />
+        <TextView
+            android:id="@+id/typename2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_above="@id/exchname2"
+            android:textSize="20sp"
+            android:layout_marginLeft="5dp"
+
+            />
+
+        <TextView
+            android:id="@+id/curr2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toLeftOf="@id/typename2"
+            android:layout_alignBottom="@id/typename2"
+            android:layout_marginLeft="10dp"
+            />
+        <TextView
+            android:id="@+id/chg2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/tickername2"
+            android:layout_toRightOf="@id/exchname2"
+            android:layout_marginLeft="30dp"
+            />
+        </RelativeLayout>
+    <ListView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/listnews"
+        android:layout_below="@id/header"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:divider="@android:color/transparent"
+        android:dividerHeight="3.0dp"
+        android:paddingLeft="5dp"
+        android:paddingRight="5dp"/>
+
+</RelativeLayout>

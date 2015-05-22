@@ -1,0 +1,56 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="app.stock.ikshwaku.stalkmarket.MainActivity2"
+    android:background="#ff839DB6"
+
+    >
+<RelativeLayout
+    android:layout_width="fill_parent"
+    android:layout_height="100dp"
+    android:id="@+id/searchView12"
+    android:background="@drawable/grapha">
+
+    <SearchView
+        android:id="@+id/searchView1"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+
+        android:layout_alignParentTop="true"
+
+        >
+    </SearchView>
+    </RelativeLayout>
+    <TextView
+        android:id="@+id/library"
+        android:text="Watch List"
+        android:layout_width="fill_parent"
+        android:layout_height="50dp"
+        android:layout_below="@id/searchView12"
+        android:textSize="20sp"
+        android:gravity="bottom"
+        android:layout_marginTop="5dp"
+        android:paddingLeft="5dp"
+        android:textColor="#ffffffff"
+        android:background="#ff5200A3"
+        android:textStyle="bold"/>
+
+    <ListView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/listresult"
+        android:layout_below="@id/library"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:paddingTop="5dp"
+        android:paddingLeft="5dp"
+        android:paddingRight="5dp"
+        android:paddingBottom="5dp"
+        android:divider="@android:color/transparent"
+        android:dividerHeight="3.0dp"
+        />
+
+
+</RelativeLayout>

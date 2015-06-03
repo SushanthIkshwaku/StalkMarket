@@ -2,6 +2,7 @@ package app.stock.ikshwaku.stalkmarket;
 
 import android.app.Activity;
 import android.content.BroadcastReceiver;
+import android.content.ContentProvider;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
@@ -110,9 +111,10 @@ public class MainActivity2 extends Activity {
 
 
     private void updateData(){
-        SQLiteDatabase db2 = new TestOpenHelper(this).getWritableDatabase();
         String query1="SELECT *FROM stocklist ORDER BY name ASC";
-        Cursor stocklistquery=db2.rawQuery(query1, null);
+        //Cursor stocklistquery=db2.rawQuery(query1, null);
+        ContentProvider contentProvider = new DataBaseContentProvider(this);
+        Cursor stocklistquery= contentProvider.query(null,null,query1,null,null,null);
         Log.v(TAG,stocklistquery.toString());
         libraryDataType libraryArray[]=new libraryDataType[stocklistquery.getCount()];
         if(stocklistquery.moveToFirst()) {
@@ -134,16 +136,17 @@ public class MainActivity2 extends Activity {
             } while (stocklistquery.moveToNext());
 
         } stocklistquery.close();
-            db2.close();
         reloadAllData();
     }
 
     private void reloadAllData(){
         TextView t1=(TextView)findViewById(R.id.library);
         t1.setVisibility(View.VISIBLE);
-        SQLiteDatabase db2 = new TestOpenHelper(this).getWritableDatabase();
+        //SQLiteDatabase db2 = new TestOpenHelper(this).getWritableDatabase();
         String query1="SELECT *FROM stocklist ORDER BY name ASC";
-        Cursor stocklistquery=db2.rawQuery(query1, null);
+        //Cursor stocklistquery=db2.rawQuery(query1, null);
+        ContentProvider contentProvider = new DataBaseContentProvider(this);
+        Cursor stocklistquery= contentProvider.query(null,null,query1,null,null,null);
         Log.v(TAG,stocklistquery.toString());
         final libraryDataType libraryArray[]=new libraryDataType[stocklistquery.getCount()];
         if(stocklistquery.moveToFirst()){
@@ -183,10 +186,8 @@ public class MainActivity2 extends Activity {
                     return false;
                 }
             });
-
-        }
             stocklistquery.close();
-        db2.close();
+        }
     }
 
     public class tickerSearchReceiver extends BroadcastReceiver {

@@ -19,6 +19,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import org.apache.http.HttpResponse;
@@ -35,8 +36,8 @@ import java.util.List;
 
 public class MainActivity3 extends Activity {
     ArrayAdapter<news> adapter;
+    private ProgressBar spinner;
     private static final String TAG = "My3Activity";
-    String TAG1="post";
     private ListView listView1;
     List<news> newsList=null;
     newslistadapter adapter1;
@@ -61,7 +62,9 @@ public class MainActivity3 extends Activity {
         symbol=i.getStringExtra("symbol");
         Log.v(TAG, symbol);
         listView1=(ListView)findViewById(R.id.listnews);
-
+        listView1.setVisibility(View.GONE);
+        spinner= (ProgressBar)findViewById(R.id.progress2);
+        spinner.setVisibility(View.VISIBLE);
         new getNews().execute();
 
         SQLiteDatabase db1 = new TestOpenHelper(this).getWritableDatabase();
@@ -77,72 +80,80 @@ public class MainActivity3 extends Activity {
 
             SpannableString spanString = new SpannableString(cursor.getString(1));
             spanString.setSpan(new StyleSpan(Typeface.BOLD), 0, spanString.length(), 0);
-            spanString.setSpan(new ForegroundColorSpan(Color.WHITE), 0,spanString.length(), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+            spanString.setSpan(new ForegroundColorSpan(Color.WHITE), 0,spanString.length(),
+                    Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
             cmpname.setText(spanString);
-            // holder.cmpname.setText(searchElement.name);
 
             if(cursor.getString(5).charAt(0)=='-') {
-
                 SpannableString spanString2 = new SpannableString(cursor.getString(5));
-                spanString2.setSpan(new ForegroundColorSpan(Color.RED), 0,spanString2.length(), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+                spanString2.setSpan(new ForegroundColorSpan(Color.RED), 0,spanString2.length(),
+                        Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
                 chg.setText(spanString2);
 
-                if ((cursor.getString(3).indexOf('.') != -1) && (cursor.getString(3).length() > (cursor.getString(3).indexOf('.') + 3))) {
+                if ((cursor.getString(3).indexOf('.') != -1) && (cursor.getString(3).length() >
+                        (cursor.getString(3).indexOf('.') + 3))) {
 
-                    SpannableString spanString1 = new SpannableString(cursor.getString(3).substring(0, cursor.getString(3).indexOf('.') + 3));
-                    spanString1.setSpan(new ForegroundColorSpan(Color.RED), 0,spanString1.length(), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+                    SpannableString spanString1 = new SpannableString(
+                            cursor.getString(3).substring(0, cursor.getString(3).indexOf('.') + 3));
+                    spanString1.setSpan(new ForegroundColorSpan(Color.RED), 0,spanString1.length(),
+                            Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
                     price.setText(spanString1);
                 } else {
-
                     SpannableString spanString1 = new SpannableString(cursor.getString(3));
-                    spanString1.setSpan(new ForegroundColorSpan(Color.RED), 0,spanString1.length(), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+                    spanString1.setSpan(new ForegroundColorSpan(Color.RED), 0,spanString1.length(),
+                            Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
                     price.setText(spanString1);
                 }
-            }else{
-                if(cursor.getString(5).charAt(0)=='+'){
+            }else {
+                if(cursor.getString(5).charAt(0)=='+') {
                     SpannableString spanString2 = new SpannableString(cursor.getString(5));
-                    spanString2.setSpan(new ForegroundColorSpan(Color.parseColor("#33CC33")), 0,spanString2.length(), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+                    spanString2.setSpan(new ForegroundColorSpan(Color.parseColor("#33CC33")),
+                            0,spanString2.length(), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
                     chg.setText(spanString2);
-                    if ((cursor.getString(3).indexOf('.') != -1) && (cursor.getString(3).length() > (cursor.getString(3).indexOf('.') + 3))) {
+                    if ((cursor.getString(3).indexOf('.') != -1) && (cursor.getString(3).length() >
+                            (cursor.getString(3).indexOf('.') + 3))) {
 
-                        SpannableString spanString1 = new SpannableString(cursor.getString(3).substring(0, cursor.getString(3).indexOf('.') + 3));
-                        spanString1.setSpan(new ForegroundColorSpan(Color.parseColor("#33CC33")), 0,spanString1.length(), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+                        SpannableString spanString1 = new SpannableString(
+                                cursor.getString(3).substring(0, cursor.getString(3).indexOf('.') + 3));
+                        spanString1.setSpan(new ForegroundColorSpan(Color.parseColor("#33CC33")),
+                                0,spanString1.length(), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
                         price.setText(spanString1);
                     } else {
-
                         SpannableString spanString1 = new SpannableString(cursor.getString(3));
-                        spanString1.setSpan(new ForegroundColorSpan(Color.parseColor("#33CC33")), 0,spanString1.length(), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+                        spanString1.setSpan(new ForegroundColorSpan(Color.parseColor("#33CC33")),
+                                0,spanString1.length(), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
                         price.setText(spanString1);
                     }
                 }else{
                     SpannableString spanString2 = new SpannableString(cursor.getString(5));
-                    spanString2.setSpan(new ForegroundColorSpan(Color.GRAY), 0,spanString2.length(), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+                    spanString2.setSpan(new ForegroundColorSpan(Color.GRAY), 0,spanString2.length(),
+                            Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
                     chg.setText(spanString2);
-                    if ((cursor.getString(3).indexOf('.') != -1) && (cursor.getString(3).length() > (cursor.getString(3).indexOf('.') + 3))) {
+                    if ((cursor.getString(3).indexOf('.') != -1) && (cursor.getString(3).length() >
+                            (cursor.getString(3).indexOf('.') + 3))) {
 
-                        SpannableString spanString1 = new SpannableString(cursor.getString(3).substring(0, cursor.getString(3).indexOf('.') + 3));
-                        spanString1.setSpan(new ForegroundColorSpan(Color.GRAY), 0,spanString1.length(), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+                        SpannableString spanString1 = new SpannableString(
+                                cursor.getString(3).substring(0, cursor.getString(3).indexOf('.') + 3));
+                        spanString1.setSpan(new ForegroundColorSpan(Color.GRAY),
+                                0,spanString1.length(), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
                         price.setText(spanString1);
                     } else {
 
                         SpannableString spanString1 = new SpannableString(cursor.getString(3));
-                        spanString1.setSpan(new ForegroundColorSpan(Color.GRAY), 0,spanString1.length(), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+                        spanString1.setSpan(new ForegroundColorSpan(Color.GRAY),
+                                0,spanString1.length(), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
                         price.setText(spanString1);
                     }
                 }
             }
             SpannableString spanString2 = new SpannableString(cursor.getString(0));
-           // spanString.setSpan(new StyleSpan(Typeface.BOLD), 0, spanString.length(), 0);
             spanString2.setSpan(new ForegroundColorSpan(Color.WHITE), 0,spanString2.length(), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
             cmpname.setText(spanString);
             textName.setText(spanString2);
             SpannableString spanString3 = new SpannableString(cursor.getString(2));
-           // spanString.setSpan(new StyleSpan(Typeface.BOLD), 0, spanString.length(), 0);
             spanString3.setSpan(new ForegroundColorSpan(Color.WHITE), 0,spanString3.length(), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
             exch.setText(spanString3);
-            //holder.price.setText(searchElement.price);
             SpannableString spanString4 = new SpannableString(cursor.getString(4));
-            //spanString.setSpan(new StyleSpan(Typeface.BOLD), 0, spanString.length(), 0);
             spanString4.setSpan(new ForegroundColorSpan(Color.WHITE), 0,spanString4.length(), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
             cur.setText(spanString4);
 
@@ -150,23 +161,6 @@ public class MainActivity3 extends Activity {
 
         }
         db1.close();
-
-        /*adapter1=new newslistadapter(MainActivity3.this,R.layout.newslayout,newslist1);
-        listView1.setAdapter(adapter1);
-
-        /*adapter=new ArrayAdapter<news>(MainActivity3.this,
-                R.layout.newslayout,newslist1);
-        listView1.setAdapter(adapter);
-        /*Intent intentService =new Intent(getApplicationContext(),
-                NewsIntentService.class);
-        intentService.putExtra("symbol",symbol);
-        startService(intentService);*/
-        //new getNews().execute();
-        /*Log.v(TAG1, "postExec");
-        Log.v(TAG1,newsList.get(0).getTitle().toString());*/
-
-
-
     }
 
     private class getNews extends AsyncTask<Void, Void, Void> {
@@ -184,15 +178,6 @@ public class MainActivity3 extends Activity {
                 XMLPullHandlerNews parser = new XMLPullHandlerNews();
                 newsList = parser.parse(is);
                 Log.v(TAG, "postExec");
-                //listView1=(ListView)findViewById(R.id.listnews);
-                //ArrayAdapter<news>
-                //adapter=new ArrayAdapter<news>(MainActivity3.this,
-                //        R.layout.newslayout,newsList);
-                //listView1.setAdapter(adapter);
-                //Log.v(TAG, newsList.get(0).toString());
-                //adapter1=new newslistadapter(MainActivity3.this,R.layout.newslayout,newsList);
-                //listView1.setAdapter(adapter1);
-
                 return null;
             } catch (ClientProtocolException e) {
                 e.printStackTrace();
@@ -205,8 +190,9 @@ public class MainActivity3 extends Activity {
         @Override
         protected void onPostExecute(Void voids){
             adapter1=new newslistadapter(MainActivity3.this,R.layout.newslayout,newsList);
-            //listView1.setAdapter(adapter1);
+            spinner.setVisibility(View.GONE);
             listView1.setAdapter(adapter1);
+            listView1.setVisibility(View.VISIBLE);
             listView1.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                 @Override
                 public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
@@ -222,19 +208,14 @@ public class MainActivity3 extends Activity {
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.menu_main_activity3, menu);
         return true;
     }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
 
-        //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
             return true;
         }

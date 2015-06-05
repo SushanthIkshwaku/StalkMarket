@@ -53,7 +53,6 @@ public class newslistadapter extends ArrayAdapter<String> {
             holder=(RowHolder)rowView.getTag();
         }
         news searchElement=searchJsonArray.get(position);
-        Log.v(TAG, searchElement.toString());
         SpannableString spanString = new SpannableString(searchElement.getTitle());
         spanString.setSpan(new StyleSpan(Typeface.BOLD), 0, spanString.length(), 0);
         spanString.setSpan(new RelativeSizeSpan(1f),0,spanString.length(),0);

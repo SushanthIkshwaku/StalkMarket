@@ -1,0 +1,7 @@
+Problem Description:
+ StalkMarket is an Android Application which aims to provide its users tailor made
+ news results based on the stocks followed in their Watchlist.
+ These headlines help the user to be aware of the the performance of their stocks 
+ and enable the user made better decisions.
+ The user friendly interface allows the user to have fast access to headlines of
+ multiple stocks.   

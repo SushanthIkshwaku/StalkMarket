@@ -30,7 +30,6 @@ import android.widget.TextView;
 import org.json.JSONArray;
 import org.json.JSONException;
 
-
 public class MainActivity2 extends Activity {
 
     SearchView search;
@@ -102,7 +101,10 @@ public class MainActivity2 extends Activity {
                 return false;
             }
         });
+
+
     }
+
 
     private void updateData(){
         String query1="SELECT *FROM stocklist ORDER BY name ASC";
